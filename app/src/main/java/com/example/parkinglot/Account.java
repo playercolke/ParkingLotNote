@@ -14,6 +14,10 @@ public class Account {
         accountID = -1;
     }
 
+    public Account(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public int getAccountID() {return accountID;}
     public void setAccountID(int id) {accountID = id;}

@@ -9,6 +9,7 @@ package com.example.parkinglot;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -18,6 +19,10 @@ public class ParkingLotDataSource {
     private ParkingLotDBHelper dbHelper;
 
     public ParkingLotDataSource(Context context) {dbHelper = new ParkingLotDBHelper(context);}
+
+    public void open() throws SQLException {
+        database = dbHelper.getWritableDatabase();
+    }
 
     public void close() {dbHelper.close();}
 
@@ -202,6 +207,7 @@ public class ParkingLotDataSource {
                 cars.add(newCar);
                 cursor.moveToNext();
             }
+            cursor.close();
         }
         catch (Exception e) {
             cars = new ArrayList<Car>();
@@ -249,6 +255,10 @@ public class ParkingLotDataSource {
         return car;
     }
 
+    /*
+    @Param: carID
+    @Description: delete the car by given ID
+     */
     public boolean deleteCar(int carId) {
         boolean didDelete = false;
         try {
