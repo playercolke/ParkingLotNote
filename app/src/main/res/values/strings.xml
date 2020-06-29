@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Parking lot</string>
+    <string name="loginbutton">loginButton</string>
+    <string name="createaccountbutton">createAccountButton</string>
+    <string name="username">UserName:</string>
+    <string name="password">PassWord:</string>
+</resources>
