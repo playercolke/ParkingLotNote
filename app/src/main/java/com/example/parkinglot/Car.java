@@ -7,11 +7,13 @@ SBU ID: 111665989
 package com.example.parkinglot;
 
 public class Car {
-    private int carID, time;
+    private int carID, time, accountID;
     private String licensePlate, brand, model, color;
 
     public int getCarID() {return carID;}
     public void setCarID(int id) {carID = id;}
+    public int getAccountID() {return accountID;}
+    public void setAccountID(int id) {accountID = id;}
     public int getTime() {return time;}
     public void setTime(int time) {this.time = time;}
     public String getLicensePlate() {return licensePlate;}

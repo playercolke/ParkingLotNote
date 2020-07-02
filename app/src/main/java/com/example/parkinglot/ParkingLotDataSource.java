@@ -47,27 +47,6 @@ public class ParkingLotDataSource {
     }
 
     /*
-    @Param: account that needed to be update in the account table
-    @Description: update specific account in the table
-     */
-    public boolean updateAccount(Account account) {
-        boolean didSucceed = false;
-        try {
-            long  rowID = (long) account.getAccountID();
-            ContentValues updateValues = new ContentValues();
-
-            updateValues.put("username", account.getUsername());
-            updateValues.put("password", account.getPassword());
-
-            didSucceed = database.insert("account", "_id=" + rowID, updateValues) > 0;
-        }
-        catch (Exception e) {
-            //Do nothing
-        }
-        return didSucceed;
-    }
-
-    /*
     @Param: car that needed to be insert into the car table
     @Description: insert a new car into the car table.
      */
@@ -81,6 +60,7 @@ public class ParkingLotDataSource {
             initialValues.put("model", car.getModel());
             initialValues.put("color", car.getColor());
             initialValues.put("time", car.getTime());
+            initialValues.put("account_id", car.getAccountID());
 
             didSucceed = database.insert("car", null, initialValues) > 0;
         }
@@ -105,8 +85,9 @@ public class ParkingLotDataSource {
             updateValues.put("model", car.getModel());
             updateValues.put("color", car.getColor());
             updateValues.put("time", car.getTime());
+            updateValues.put("accout_id", car.getAccountID());
 
-            didSucceed = database.insert("account", "_id=" + rowID, updateValues) > 0;
+            didSucceed = database.insert("car", "_id=" + rowID, updateValues) > 0;
         }
         catch (Exception e) {
             //Do nothing
@@ -120,7 +101,7 @@ public class ParkingLotDataSource {
     public int getLastAccountId() {
         int lastId;
         try {
-            String query = "SELECT MAX(_id) FROM account";
+            String query = "SELECT MAX(account_id) FROM account";
             Cursor cursor = database.rawQuery(query, null);
 
             cursor.moveToFirst();
@@ -202,6 +183,7 @@ public class ParkingLotDataSource {
                 newCar.setModel(cursor.getString(3));
                 newCar.setColor(cursor.getString(4));
                 newCar.setTime(cursor.getInt(5));
+
 
                 //add to arrayList
                 cars.add(newCar);

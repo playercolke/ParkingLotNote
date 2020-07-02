@@ -20,11 +20,12 @@ public class ParkingLotDBHelper extends SQLiteOpenHelper {
 
     //Set up tables structure
     private static final String CREATE_TABLE_ACCOUNT =
-            "create table " + ACCOUNT_TABLE + " (_id integer primary key autoincrement," +
+            "create table " + ACCOUNT_TABLE + " (account_id integer primary key autoincrement," +
                     "username text not null, password text not null);";
     private static final String CREATE_TABLE_CAR =
             "create table " + CAR_TABLE + " (_id integer primary key autoincrement," +
-                    "licenseplate text, brand text, model text, color text, time integer);";
+                    "licenseplate text, brand text, model text, color text, time integer, " +
+                    "account_id integer primary key, FOREIGN KEY (account_id) REFERENCES account (account_id));";
 
     public ParkingLotDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
