@@ -85,9 +85,9 @@ public class ParkingLotDataSource {
             updateValues.put("model", car.getModel());
             updateValues.put("color", car.getColor());
             updateValues.put("time", car.getTime());
-            updateValues.put("accout_id", car.getAccountID());
+            updateValues.put("account_id", car.getAccountID());
 
-            didSucceed = database.insert("car", "_id=" + rowID, updateValues) > 0;
+            didSucceed = database.update("car", updateValues, "_id=" + rowID, null) > 0;
         }
         catch (Exception e) {
             //Do nothing
@@ -167,10 +167,10 @@ public class ParkingLotDataSource {
     @Params: sort field and sort method
     @Description: return a arrayList of cars and sorted in specific way
      */
-    public ArrayList<Car> getCars(String sortField, String sortOrder) {
+    public ArrayList<Car> getCars(String sortField, String sortOrder, int account_id) {
         ArrayList<Car> cars = new ArrayList<Car>();
         try {
-            String query = "SELECT * FROM car ORDER BY " + sortField + " " + sortOrder;
+            String query = "SELECT * FROM car WHERE account_id =" + account_id + " ORDER BY " + sortField + " " + sortOrder;
             Cursor cursor = database.rawQuery(query, null);
 
             Car newCar;
@@ -183,6 +183,7 @@ public class ParkingLotDataSource {
                 newCar.setModel(cursor.getString(3));
                 newCar.setColor(cursor.getString(4));
                 newCar.setTime(cursor.getInt(5));
+                newCar.setAccountID(cursor.getInt(6));
 
 
                 //add to arrayList
@@ -232,6 +233,7 @@ public class ParkingLotDataSource {
             car.setModel(cursor.getString(3));
             car.setColor(cursor.getString(4));
             car.setTime(cursor.getInt(5));
+            car.setAccountID(cursor.getInt(6));
         }
         cursor.close();
         return car;

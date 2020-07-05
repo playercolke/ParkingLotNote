@@ -24,8 +24,8 @@ public class ParkingLotDBHelper extends SQLiteOpenHelper {
                     "username text not null, password text not null);";
     private static final String CREATE_TABLE_CAR =
             "create table " + CAR_TABLE + " (_id integer primary key autoincrement," +
-                    "licenseplate text, brand text, model text, color text, time integer, " +
-                    "account_id integer primary key, FOREIGN KEY (account_id) REFERENCES account (account_id));";
+                    "licenseplate text not null, brand text not null, model text not null, color text not null, time integer not null, " +
+                    "account_id integer, FOREIGN KEY (account_id) REFERENCES account (account_id));";
 
     public ParkingLotDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

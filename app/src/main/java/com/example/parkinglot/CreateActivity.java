@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +17,7 @@ public class CreateActivity extends AppCompatActivity {
 
     private EditText usernameInput;
     private EditText passwordInput;
-    private Button createButton;
-    ImageButton loginButton;
+    private ImageButton loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class CreateActivity extends AppCompatActivity {
     }
 
     private void initCreateButton() {
-        createButton = findViewById(R.id.createAccountButton);
+        Button createButton = findViewById(R.id.createAccountButton);
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,11 +71,13 @@ public class CreateActivity extends AppCompatActivity {
                         }
                     }
                     wasSuccessful = ds.insertAccount(newAccount);
+                    Log.d("success", "good to go");
 
                     ds.close();
                 }
                 catch (Exception e) {
                     wasSuccessful = false;
+                    Log.e("fail", "exception catched");
                 }
                 if (wasSuccessful) {
                     loginButton.callOnClick();

@@ -4,4 +4,5 @@
     <string name="createaccountbutton">createAccountButton</string>
     <string name="username">UserName:</string>
     <string name="password">PassWord:</string>
+    <string name="timeInputWarning">Input for time must be 0 to 23, which indecates set for one hour interval</string>
 </resources>
