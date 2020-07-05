@@ -1,3 +1,9 @@
+/*
+@author Jiating Su <jiating.su@stonybrook.edu>
+Course: CSE 390: Mobile APP Development
+SBU ID: 111665989
+ */
+
 package com.example.parkinglot;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +38,10 @@ public class AddCarActivity extends AppCompatActivity {
         }
     }
 
+    /*
+    @Param: Car id
+    @Descriptor: when there is a car id in the bundle, this method will be called to fetch the correct car data from the database.
+     */
     public void initCar(int id) {
         ParkingLotDataSource ds = new ParkingLotDataSource(this);
         try {
@@ -56,6 +66,7 @@ public class AddCarActivity extends AppCompatActivity {
         editTime.setText(String.valueOf(currentCar.getTime()));
     }
 
+    //Create an save button to save the car data.
     public void initSaveButton() {
         Button saveButton = findViewById(R.id.carSaveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +89,7 @@ public class AddCarActivity extends AppCompatActivity {
                 try {
                     ds.open();
 
+                    //Check if the car is already exist in the database.
                     if (currentCar.getCarID() == -1) {
                         didSucceed = ds.insertCar(currentCar);
                         if (didSucceed) {

@@ -6,6 +6,9 @@ SBU ID: 111665989
 
 package com.example.parkinglot;
 
+/*
+Car class with only empty constructor, getters and setters.
+ */
 public class Car {
     private int carID, time, accountID;
     private String licensePlate, brand, model, color;

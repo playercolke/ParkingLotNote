@@ -1,3 +1,9 @@
+/*
+@author Jiating Su <jiating.su@stonybrook.edu>
+Course: CSE 390: Mobile APP Development
+SBU ID: 111665989
+ */
+
 package com.example.parkinglot;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         initLoginButton();
     }
 
+    //Set up the login button for the users to login their accounts.
     private void initLoginButton() {
         usernameInput = findViewById(R.id.usernameInput);
         passwordInput = findViewById(R.id.passwordInput);
@@ -36,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /*
+    @Params: username and password
+    @Descriptor: Function of login an account.
+     */
     public void login(String username, String password) {
         ParkingLotDataSource ds = new ParkingLotDataSource(this);
         try {
@@ -58,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Function that send the user to create account Screen(CreateActivity).
     private void initCreateAccount() {
         ImageButton createButton = findViewById(R.id.createButton);
         createButton.setOnClickListener(new View.OnClickListener() {

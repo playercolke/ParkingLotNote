@@ -1,3 +1,9 @@
+/*
+@author Jiating Su <jiating.su@stonybrook.edu>
+Course: CSE 390: Mobile APP Development
+SBU ID: 111665989
+ */
+
 package com.example.parkinglot;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +43,7 @@ public class CreateActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.passwordInput);
     }
 
+    //Button to move sent the user to the loginActivity(MainActivity).
     private void initLoginAccount() {
         loginButton = findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +56,7 @@ public class CreateActivity extends AppCompatActivity {
         });
     }
 
+    //Set up the create button to create an new account.
     private void initCreateButton() {
         Button createButton = findViewById(R.id.createAccountButton);
         createButton.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +94,7 @@ public class CreateActivity extends AppCompatActivity {
         });
     }
 
+    //When the user try to create a duplicate username, this message will be printed.
     private void duplicateUsernameText() {
         Toast.makeText(this, "Duplicate Username", Toast.LENGTH_LONG).show();
     }

@@ -6,6 +6,9 @@ SBU ID: 111665989
 
 package com.example.parkinglot;
 
+/*
+Account Class with only constructors, getters and setters.
+ */
 public class Account {
     private int accountID;
     private String username, password;

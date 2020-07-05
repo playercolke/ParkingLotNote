@@ -1,3 +1,9 @@
+/*
+@author Jiating Su <jiating.su@stonybrook.edu>
+Course: CSE 390: Mobile APP Development
+SBU ID: 111665989
+ */
+
 package com.example.parkinglot;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +28,7 @@ public class TableActivity extends AppCompatActivity {
     private ArrayList<Car> cars;
     private int account_id;
 
+    //Set up the click listener for the list item so that the program will automatically send the data to AddCarActivity.
     private View.OnClickListener onItemClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -54,6 +61,7 @@ public class TableActivity extends AppCompatActivity {
             ds.open();
             cars = ds.getCars("brand", "ASC", account_id);
             ds.close();
+            //Set up the adapter for the data of cars.
             if (cars.size() > 0) {
                 carList = findViewById(R.id.rvCars);
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -68,6 +76,7 @@ public class TableActivity extends AppCompatActivity {
         }
     }
 
+    //Set up an add button, which send the user to AddCarActivity to create a new car.
     public void initAddButton() {
         Button addButton = findViewById(R.id.addButton);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +90,7 @@ public class TableActivity extends AppCompatActivity {
         });
     }
 
+    //Set up the function of delete switch.
     public void initDeleteSwitch() {
         Switch s = findViewById(R.id.deleteSwitch);
         s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

@@ -1,3 +1,9 @@
+/*
+@author Jiating Su <jiating.su@stonybrook.edu>
+Course: CSE 390: Mobile APP Development
+SBU ID: 111665989
+ */
+
 package com.example.parkinglot;
 
 import android.content.Context;
@@ -19,6 +25,9 @@ public class CarAdapter extends RecyclerView.Adapter {
     private boolean isDeleting;
     private Context parentContext;
 
+    /*
+    Viewholder set up
+     */
     public class CarViewHolder extends RecyclerView.ViewHolder {
 
         public TextView textLicense, textBrand;
@@ -37,11 +46,17 @@ public class CarAdapter extends RecyclerView.Adapter {
         public Button getDeteleButton() {return deteleButton;}
     }
 
+    /*
+    Constructor
+     */
     public CarAdapter(ArrayList<Car> list, Context context) {
         carData = list;
         parentContext = context;
     }
 
+    /*
+    Carlist item click listener, used to check car details.
+     */
     public void setmOnItemClickListener(View.OnClickListener onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
     }
@@ -58,6 +73,7 @@ public class CarAdapter extends RecyclerView.Adapter {
         CarViewHolder cvh = (CarViewHolder) holder;
         cvh.getTextLicense().setText(carData.get(position).getLicensePlate());
         cvh.getTextBrand().setText(carData.get(position).getBrand());
+        //If isDeleting, the delete button will be shown and activated.
         if (isDeleting) {
             cvh.getDeteleButton().setVisibility(View.VISIBLE);
             cvh.getDeteleButton().setOnClickListener(new View.OnClickListener() {
@@ -72,6 +88,10 @@ public class CarAdapter extends RecyclerView.Adapter {
         }
     }
 
+    /*
+    @Param: position
+    @Descriptor: position is used to define which item in the list will be deleted.
+     */
     public void deleteItem(int position) {
         Car car = carData.get(position);
         ParkingLotDataSource ds = new ParkingLotDataSource(parentContext);
@@ -92,8 +112,10 @@ public class CarAdapter extends RecyclerView.Adapter {
         }
     }
 
+    //Used to set the delete status.
     public void setDelete(boolean b) {isDeleting = b;}
 
+    //Return List size.
     @Override
     public int getItemCount() {
         return carData.size();
